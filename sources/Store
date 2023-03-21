@@ -1,0 +1,18 @@
+#! /bin/tcsh
+
+set destdir = "/home/servedio/Storage"
+if(-d $destdir) then 
+
+    set a = `date +CELLS_%y.%m.%d`
+
+    set d  = sources
+
+    echo "Creating $a.tgz"
+    cd ..
+    tar -chzf $a.tgz configure Makefile \
+		$d/{*.[cfh],Makefile,Store}
+
+    echo "Moving $a.tgz to $destdir"
+    mv -f $a.tgz $destdir
+
+endif
